@@ -16,12 +16,12 @@ exports.fetchAndProcessBranches = void 0;
 const fs_1 = __importDefault(require("fs"));
 const db_service_1 = require("../../services/db.service");
 const xml_service_1 = require("../../services/xml.service");
-const util_service_1 = require("../../services/util.service");
 function processBranches(branches, market) {
     return __awaiter(this, void 0, void 0, function* () {
         for (const branch of branches) {
             const currentDate = new Date();
-            const formattedDate = (0, util_service_1.formatDate)(currentDate);
+            // const formattedDate = formatDate(currentDate)
+            const formattedDate = '20230813';
             const url = `${market.baseUrl}${branch.branch_id}-${formattedDate + branch.timestamp}${market.suffix}`;
             const filePath = `./data/${branch.branch_id + branch.branch_brand}.xml`;
             try {
