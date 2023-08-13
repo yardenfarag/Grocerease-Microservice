@@ -10,8 +10,7 @@ import { Document, WithId } from 'mongodb'
 async function processBranches(branches: Branch[], market: MarketConfig): Promise<void> {
     for (const branch of branches) {
         const currentDate = new Date()
-        // const formattedDate = formatDate(currentDate)
-        const formattedDate = '20230813'
+        const formattedDate = formatDate(currentDate)
         const url = `${market.baseUrl}${branch.branch_id}-${formattedDate + branch.timestamp}${market.suffix}`
         const filePath = `./data/${branch.branch_id + branch.branch_brand}.xml`
         try {
