@@ -1,4 +1,3 @@
-import { Request, Response } from 'express'
 import { fetchAndProcessBranches } from './market.service'
 import { MarketConfig } from '../../models/marketConfig'
 
@@ -23,13 +22,14 @@ const marketConfigs = [
     },
 ]
 
-export async function processMarkets(req: Request, res: Response): Promise<void> {
+
+export async function processMarkets(): Promise<void> {
     try {
         await Promise.all(marketConfigs.map(async (market: MarketConfig) => {
             await fetchAndProcessBranches(market)
         }))
-        res.send('Market data processing completed.')
+        console.log('Market data processing completed.')
     } catch (err) {
-        res.status(500).send({ err: 'Failed to process market data' })
+        console.error('Failed to process market data:', err)
     }
 }
